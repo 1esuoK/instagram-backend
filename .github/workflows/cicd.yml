@@ -1,0 +1,28 @@
+name: Deploy instagram-mern backend
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  build:
+    runs-on:  ubuntu-latest
+    steps:
+      - name: Checkout Source
+        uses: action/checkout@v4
+      - name: Login to docker hub
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker Image
+        run: docker build -t trituong/insta-backend .
+      - name: Publish Image to docker hub
+        run: docker push trituong/insta-backend:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull Image from docker hub
+        run: docker pull trituong/insta-backend
+      - name: Run docker container
+        run: docker run -d -p 4000:4000 --name insta-be-container -e MONGO_PASSWORD=${{ secrets.MONGO_PASSWORD }} trituong/insta-backend
