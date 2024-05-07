@@ -22,6 +22,8 @@ jobs:
     needs: build
     runs-on: self-hosted
     steps:
+      - name: Change Docker socket permission
+        run: sudo chmod 666 /var/run/docker.sock
       - name: Pull Image from docker hub
         run: docker pull trituong/insta-backend:latest
       - name: Delete old container
