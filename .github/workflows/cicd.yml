@@ -26,6 +26,8 @@ jobs:
         run: sudo chmod 666 /var/run/docker.sock
       - name: Pull Image from docker hub
         run: docker pull trituong/insta-backend:latest
+      - name: Create network
+        run: docker network create insta-net
       - name: Delete old container
         run: docker rm -f insta-be-container
       - name: Run docker container
