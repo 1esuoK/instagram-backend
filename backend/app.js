@@ -21,7 +21,7 @@ const chat = require('./routes/chatRoute');
 const message = require('./routes/messageRoute');
 
 app.use('/api/v1', post);
-app.use('/usr/share/nginx/html/api/v1', user);
+app.use('/api/v1', user);
 app.use('/api/v1', chat);
 app.use('/api/v1', message);
 
