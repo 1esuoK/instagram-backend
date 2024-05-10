@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 4000;
 connectDatabase();
 
 const server = app.listen(PORT, () => {
-    console.log(`Server Running on http://be:${PORT}`);
+    console.log(`Server Running on http://44.206.33.129:${PORT}`);
 });
 
 
