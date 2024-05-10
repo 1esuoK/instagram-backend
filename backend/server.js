@@ -14,7 +14,7 @@ const server = app.listen(PORT, () => {
 const io = require("socket.io")(server, {
     // pingTimeout: 60000,
     cors: {
-        origin: "http://44.206.33.129:3000",
+        origin: "http://insta-fe-container:3000",
     }
 });
 
